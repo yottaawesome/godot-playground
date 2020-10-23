@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a repository to hold my code for learning the Godot game engine, main from following along GameDev.tv's [Godot intro course](https://www.udemy.com/course/godot/).
+This is a repository to hold my code for learning the Godot game engine, mainly from following along GameDev.tv's [Godot intro course](https://www.udemy.com/course/godot/).
 
 ## Using this repository
 
