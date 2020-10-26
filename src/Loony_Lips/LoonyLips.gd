@@ -11,4 +11,12 @@ func _ready():
 	print(story % prompts)
 	
 	# Can also use $Label instead of get_node("Label")
-	get_node("DisplayText").text = story % prompts
+	#get_node("DisplayText").text = story % prompts
+	$VBoxContainer/DisplayText.text = story % prompts
+	
+func _on_PlayerText_text_entered(new_text):
+	update_DisplayText(new_text)
+	
+func update_DisplayText(words):
+	$VBoxContainer/DisplayText.text = words
+	$VBoxContainer/PlayerText.clear()
