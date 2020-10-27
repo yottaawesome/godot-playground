@@ -23,7 +23,6 @@ func set_current_story():
 	#var selected_story = randi() % stories
 	#current_story.prompts = $StoryBook.get_child(selected_story).prompts
 	#current_story.story = $StoryBook.get_child(selected_story).story
-	#current_story = template[randi() % template.size()]
 
 
 func get_from_json(file_name):
