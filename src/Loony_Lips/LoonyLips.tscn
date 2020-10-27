@@ -48,9 +48,9 @@ __meta__ = {
 }
 
 [node name="DisplayText" type="Label" parent="VBoxContainer"]
-margin_top = 274.0
+margin_top = 275.0
 margin_right = 1032.0
-margin_bottom = 674.0
+margin_bottom = 675.0
 rect_min_size = Vector2( 0, 400 )
 custom_fonts/font = SubResource( 1 )
 text = "Placeholder Text"
@@ -64,6 +64,7 @@ margin_top = 679.0
 margin_right = 1032.0
 margin_bottom = 752.0
 custom_constants/separation = 12
+alignment = 2
 
 [node name="PlayerText" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
 margin_right = 866.0
@@ -86,7 +87,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="ButtonLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
 margin_left = 963.0
 margin_top = 5.0
 margin_right = 1032.0
