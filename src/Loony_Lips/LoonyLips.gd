@@ -1,17 +1,17 @@
 extends Control
 
 var player_words = []
-var template = [
-	{
-		"prompts": ["a name", "a noun", "an adverb", "adjective"],
-		"story": "Once upon a time, %s played %s and it made him all %s inside. It was a %s day."
-	},
-	{
-		"prompts": ["a name", "a noun", "an adjective"],
-		"story": "Here is %s, he is a %s who is %s."
-	}
-]
-var current_story = null	
+#var template = [
+#	{
+#		"prompts": ["a name", "a noun", "an adverb", "adjective"],
+#		"story": "Once upon a time, %s played %s and it made him all %s inside. It was a %s day."
+#	},
+#	{
+#		"prompts": ["a name", "a noun", "an adjective"],
+#		"story": "Here is %s, he is a %s who is %s."
+#	}
+#]
+var current_story = {}	
 
 onready var player_text = $VBoxContainer/HBoxContainer/PlayerText
 onready var button_label = $VBoxContainer/HBoxContainer/ButtonLabel
@@ -25,7 +25,11 @@ func _ready():
 
 func set_current_story():
 	randomize()
-	current_story = template[randi() % template.size()]
+	var stories = $StoryBook.get_child_count()
+	var selected_story = randi() % stories
+	current_story.prompts = $StoryBook.get_child(selected_story).prompts
+	current_story.story = $StoryBook.get_child(selected_story).story
+	#current_story = template[randi() % template.size()]
 
 
 func _on_PlayerText_text_entered(_new_text):
