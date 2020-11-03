@@ -15,7 +15,7 @@ signal animate
 func _physics_process(delta):
 	apply_gravity()
 	jump()
-	move()	
+	move()
 	animate()
 	move_and_slide(motion, UP)
 
@@ -32,8 +32,10 @@ func move():
 	
 	if isLeftPressed and not isRightPressed:
 		motion.x = -SPEED
+		$Camera2D.position.x = -1000
 	elif isRightPressed and not isLeftPressed:
 		motion.x = SPEED
+		$Camera2D.position.x = 1000
 	else:
 		motion.x = 0
 
