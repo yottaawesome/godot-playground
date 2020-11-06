@@ -9,10 +9,13 @@ const GRAVITY = 150
 # is down the screen (negative is obviously up)
 const UP = Vector2(0,-1)
 const JUMP_SPEED = 3500
+const WORLD_LIMIT = 4000
 
 signal animate
 
 func _physics_process(delta):
+	if position.y > WORLD_LIMIT:
+		end_game()
 	apply_gravity()
 	jump()
 	move()
@@ -51,3 +54,7 @@ func apply_gravity():
 
 func animate():
 	emit_signal("animate", motion)
+	
+	
+func end_game():
+	get_tree().change_scene("res://Levels/EndGame.tscn")
