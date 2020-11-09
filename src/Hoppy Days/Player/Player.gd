@@ -11,9 +11,12 @@ const UP = Vector2(0,-1)
 const JUMP_SPEED = 3500
 const WORLD_LIMIT = 4000
 
+export var boost_multiplier = 1.5
 var lives = 3
 
 signal animate
+
+var boosted = false
 
 func _physics_process(delta):
 	if position.y > WORLD_LIMIT:
@@ -22,6 +25,10 @@ func _physics_process(delta):
 	jump()
 	move()
 	animate()
+	# workaround for the boost() not working consistently
+	if boosted:
+		motion.y = -(JUMP_SPEED * boost_multiplier)
+		boosted = false
 	move_and_slide(motion, UP)
 
 
@@ -74,7 +81,14 @@ func hurt():
 		end_game()
 
 
-
+func boost():
+	print("boost")
+	boosted = true
+	# Doesn't work for some reason
+	#position.y -= 10
+	#yield(get_tree(), "idle_frame")
+	#motion.y = -(JUMP_SPEED * boost_multiplier)
+	#print(motion.y)
 
 
 
