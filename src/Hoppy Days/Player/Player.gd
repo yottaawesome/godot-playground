@@ -12,7 +12,6 @@ const JUMP_SPEED = 3500
 const WORLD_LIMIT = 4000
 
 export var boost_multiplier = 1.5
-var lives = 3
 
 signal animate
 
@@ -20,7 +19,7 @@ var boosted = false
 
 func _physics_process(delta):
 	if position.y > WORLD_LIMIT:
-		end_game()
+		get_tree().call_group("Gamestate", "end_game")
 	apply_gravity()
 	jump()
 	move()
@@ -66,19 +65,12 @@ func animate():
 	emit_signal("animate", motion)
 
 
-func end_game():
-	get_tree().change_scene("res://Levels/EndGame.tscn")
-
-
 func hurt():
 	position.y -= 1
 	yield(get_tree(), "idle_frame")
 	motion.y = -JUMP_SPEED
-	lives -= 1
 	#$AudioStreamPlayer.stream = load("res://SFX/pain.ogg")
 	$PainSFX.play()
-	if lives < 0:
-		end_game()
 
 
 func boost():
