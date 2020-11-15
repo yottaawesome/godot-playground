@@ -25,9 +25,10 @@ func _physics_process(delta):
 	move()
 	animate()
 	# workaround for the boost() not working consistently
-	if boosted:
-		motion.y = -(JUMP_SPEED * boost_multiplier)
-		boosted = false
+	# update: fixed, tutorial code was buggy
+	#if boosted:
+	#	motion.y = -(JUMP_SPEED * boost_multiplier)
+	#	boosted = false
 	move_and_slide(motion, UP)
 
 
@@ -37,6 +38,7 @@ func jump():
 		motion.y = -JUMP_SPEED
 		#$AudioStreamPlayer.stream = load("res://SFX/jump1.ogg")
 		$JumpSFX.play()
+
 
 func move():
 	var isLeftPressed = Input.is_action_pressed("left")
@@ -53,12 +55,21 @@ func move():
 
 
 func apply_gravity():
-	if is_on_floor():
+	if position.y > WORLD_LIMIT:
+		get_tree().call_group("Gamestate", "end_game")
+	elif is_on_floor() and motion.y > 0:
 		motion.y = 0
 	elif is_on_ceiling():
 		motion.y = 1 # bounce off the ceiling
 	else:
 		motion.y += GRAVITY
+	
+	#if is_on_floor():
+	#	motion.y = 0
+	#elif is_on_ceiling():
+	#	motion.y = 1 # bounce off the ceiling
+	#else:
+	#	motion.y += GRAVITY
 
 
 func animate():
@@ -75,12 +86,11 @@ func hurt():
 
 func boost():
 	print("boost")
-	boosted = true
-	# Doesn't work for some reason
-	#position.y -= 10
-	#yield(get_tree(), "idle_frame")
-	#motion.y = -(JUMP_SPEED * boost_multiplier)
-	#print(motion.y)
+	
+	#boosted = true
+	position.y -= 10
+	yield(get_tree(), "idle_frame")
+	motion.y = -JUMP_SPEED * boost_multiplier
 
 
 
