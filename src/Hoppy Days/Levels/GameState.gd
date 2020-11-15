@@ -1,8 +1,10 @@
 extends Node2D
 
+
 var lives = 3
 var coins = 0
-var target_number_of_coins = 10
+export var target_number_of_coins = 10
+
 
 func _ready():
 	add_to_group("Gamestate")
@@ -16,8 +18,10 @@ func hurt():
 		end_game()
 	update_GUI()
 
+
 func update_GUI():
 	get_tree().call_group("GUI", "update_gui", lives, coins)
+
 
 func coin_up():
 	coins += 1
@@ -25,6 +29,7 @@ func coin_up():
 	var multiple_of_coins = (coins % target_number_of_coins) == 0
 	if multiple_of_coins:
 		life_up()
+
 
 func life_up():
 	lives += 1
