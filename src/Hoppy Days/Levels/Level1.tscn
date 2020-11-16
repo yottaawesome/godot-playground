@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/Tileset.tres" type="TileSet" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Items/JumpPad.tscn" type="PackedScene" id=6]
 [ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Items/Coin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://NPCs/Spikeman.tscn" type="PackedScene" id=9]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 5 )
@@ -27,17 +28,6 @@ tile_data = PoolIntArray( -851715, 0, 0, -786298, 4, 0, -655274, 0, 0, -655191, 
 
 [node name="SpikeTop" parent="Hazards" instance=ExtResource( 3 )]
 position = Vector2( 817.362, 1055.7 )
-
-[node name="JumpPads" type="Node" parent="."]
-
-[node name="JumpPad" parent="JumpPads" instance=ExtResource( 6 )]
-position = Vector2( 1660.13, 140.327 )
-
-[node name="BGM" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-autoplay = true
-
-[node name="GUI" parent="." instance=ExtResource( 7 )]
 
 [node name="Coins" type="Node" parent="."]
 
@@ -70,5 +60,21 @@ position = Vector2( 1644.53, -563.289 )
 
 [node name="Coin10" parent="Coins" instance=ExtResource( 8 )]
 position = Vector2( 1642.01, -659.043 )
+
+[node name="JumpPads" type="Node" parent="."]
+
+[node name="JumpPad" parent="JumpPads" instance=ExtResource( 6 )]
+position = Vector2( 1660.13, 140.327 )
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="GUI" parent="." instance=ExtResource( 7 )]
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Spikeman" parent="NPCs" instance=ExtResource( 9 )]
+position = Vector2( 2361.09, 811.39 )
 
 [editable path="Player"]
